@@ -1,0 +1,23 @@
+﻿@using TextMatch.Models
+
+@model TextMatcherModel
+
+<h2>Text Matcher</h2>
+
+<div>@Model.ErrorMessage</div>
+
+@using (Html.BeginForm("FindMatches", "Home", FormMethod.Post))
+{
+    <label for="text">Text</label>@Html.TextBoxFor(model => model.Text, new { id = "text"})
+    <label for="sub-text">Subtext</label>@Html.TextBoxFor(model => model.SubText, new { id = "sub-text"})
+   
+    <button type="submit">Submit</button>
+}
+
+@{
+    if (@Model.Matches != null)
+    {
+        string joined = string.Join(",", @Model.Matches);
+        <label>@joined</label>
+    }
+}
